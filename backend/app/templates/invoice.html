@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <body style="font-family: Arial, sans-serif; color: #0f172a;">
+    <h1>Invoice {{ invoice.invoice_number }}</h1>
+    <p><strong>From:</strong> {{ user.business_name }}</p>
+    <p><strong>Client:</strong> {{ client_name }}</p>
+    <p><strong>Issue Date:</strong> {{ invoice.issue_date }}</p>
+    <p><strong>Due Date:</strong> {{ invoice.due_date }}</p>
+    <table style="width:100%; border-collapse: collapse; margin-top: 16px;" border="1" cellpadding="8">
+      <thead>
+        <tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Amount</th></tr>
+      </thead>
+      <tbody>
+        {% for item in invoice.items %}
+        <tr>
+          <td>{{ item.description }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.unit_price }}</td>
+          <td>{{ item.amount }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p>Subtotal: {{ invoice.subtotal }}</p>
+    <p>Tax: {{ invoice.tax_amount }}</p>
+    <p><strong>Total: {{ invoice.total }}</strong></p>
+    {% if invoice.notes %}<p>Notes: {{ invoice.notes }}</p>{% endif %}
+  </body>
+</html>
