@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # InvoiceApp Monorepo
 
 This repository contains the InvoiceApp MVP:
@@ -27,3 +28,7 @@ This repository contains the InvoiceApp MVP:
 - Database: Managed Postgres
 - Email: Resend
 - PDF storage (MVP): local disk at backend `STORAGE_PATH`
+=======
+# invoice
+an invoice saas
+>>>>>>> 50c368d35e322cb058fda94a9e8a301d803dd430

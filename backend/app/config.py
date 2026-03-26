@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/invoiceapp"
+    database_url: str = "sqlite+aiosqlite:///./storage/invoiceapp.db"
     secret_key: str = "change-me-to-a-long-random-string"
     access_token_expire_days: int = 7
     resend_api_key: str = ""
