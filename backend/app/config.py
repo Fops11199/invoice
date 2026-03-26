@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     from_email: str = "invoices@example.com"
     allowed_origins: str = "http://localhost:5173"
     storage_path: str = "./storage"
+    google_client_id: str = ""
     environment: str = "dev"
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")

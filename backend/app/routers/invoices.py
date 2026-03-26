@@ -1,7 +1,9 @@
 from datetime import datetime, timezone
+import csv
+import io
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
@@ -214,3 +216,32 @@ async def send_invoice(invoice_id: str, db: AsyncSession = Depends(get_db), curr
     invoice.pdf_url = file_path
     await db.commit()
     return {"success": True}
+
+
+@router.get("/{invoice_id}/csv")
+async def get_invoice_csv(invoice_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+    invoice = (
+        await db.execute(select(Invoice).options(selectinload(Invoice.items), selectinload(Invoice.client)).where(Invoice.id == invoice_id))
+    ).scalar_one_or_none()
+    if not invoice:
+        raise HTTPException(status_code=404, detail="Invoice not found")
+    if invoice.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden")
+
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["Description", "Quantity", "Unit Price", "Amount"])
+    for item in invoice.items:
+        writer.writerow([item.description, item.quantity, item.unit_price, f"{float(item.quantity) * float(item.unit_price):.2f}"])
+    
+    writer.writerow([])
+    writer.writerow(["", "", "Subtotal", invoice.subtotal])
+    writer.writerow(["", "", f"Tax ({invoice.tax_rate}%)", invoice.tax_amount])
+    writer.writerow(["", "", "Total", invoice.total])
+
+    output.seek(0)
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": f"attachment; filename={invoice.invoice_number}.csv"}
+    )

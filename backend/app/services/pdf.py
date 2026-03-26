@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
-from weasyprint import HTML
+# from weasyprint import HTML
 
 from app.config import settings
 from app.models.invoice import Invoice
@@ -9,6 +9,7 @@ from app.models.user import User
 
 
 def generate_invoice_pdf(invoice: Invoice, user: User, client_name: str) -> tuple[bytes, str]:
+    from weasyprint import HTML
     templates_dir = Path(__file__).resolve().parent.parent / "templates"
     env = Environment(loader=FileSystemLoader(str(templates_dir)))
     template = env.get_template("invoice.html")

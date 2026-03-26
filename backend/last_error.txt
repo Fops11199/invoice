@@ -1,0 +1,216 @@
+﻿py : Traceback (most recent 
+call last):
+At line:1 char:1
++ py -m uvicorn app.main:app 
+2>&1 | Out-File -FilePath 
+last_error.txt - ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~
+    + CategoryInfo           
+   : NotSpecified: (Traceba  
+  ck (most recent call las   
+ t)::String) [], RemoteEx    
+ception
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+  File "<frozen runpy>", 
+line 198, in 
+_run_module_as_main
+  File "<frozen runpy>", 
+line 88, in _run_code
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\uvicor
+n\__main__.py", line 4, in 
+<module>
+    uvicorn.main()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\click\
+core.py", line 1485, in 
+__call__
+    return self.main(*args, 
+**kwargs)
+           
+~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\click\
+core.py", line 1406, in main
+    rv = self.invoke(ctx)
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\click\
+core.py", line 1269, in 
+invoke
+    return 
+ctx.invoke(self.callback, 
+**ctx.params)
+           ~~~~~~~~~~^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\click\
+core.py", line 824, in invoke
+    return callback(*args, 
+**kwargs)
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\uvicor
+n\main.py", line 409, in main
+    run(
+    ~~~^
+        app,
+        ^^^^
+    ...<45 lines>...
+        h11_max_incomplete_ev
+ent_size=h11_max_incomplete_e
+vent_size,
+        ^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\uvicor
+n\main.py", line 575, in run
+    server.run()
+    ~~~~~~~~~~^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\uvicor
+n\server.py", line 62, in run
+    return asyncio.run(self.s
+erve(sockets=sockets))
+           ~~~~~~~~~~~^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\asyncio\runners.py",
+ line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\asyncio\runners.py",
+ line 127, in run
+    return self._loop.run_unt
+il_complete(task)
+           ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~^^^^^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\asyncio\base_events.
+py", line 719, in 
+run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\uvicor
+n\server.py", line 69, in 
+serve
+    config.load()
+    ~~~~~~~~~~~^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\uvicor
+n\config.py", line 433, in 
+load
+    self.loaded_app = 
+import_from_string(self.app)
+                      
+~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\uvicor
+n\importer.py", line 19, in 
+import_from_string
+    module = importlib.import
+_module(module_str)
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\importlib\__init__.p
+y", line 88, in import_module
+    return _bootstrap._gcd_im
+port(name[level:], package, 
+level)
+           ~~~~~~~~~~~~~~~~~~
+~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^
+  File "<frozen 
+importlib._bootstrap>", line 
+1398, in _gcd_import
+  File "<frozen 
+importlib._bootstrap>", line 
+1371, in _find_and_load
+  File "<frozen 
+importlib._bootstrap>", line 
+1342, in 
+_find_and_load_unlocked
+  File "<frozen 
+importlib._bootstrap>", line 
+938, in _load_unlocked
+  File "<frozen importlib._bo
+otstrap_external>", line 
+762, in exec_module
+  File "<frozen 
+importlib._bootstrap>", line 
+491, in 
+_call_with_frames_removed
+  File "C:\Users\Black\Deskto
+p\builds\invoice\backend\app\
+main.py", line 7, in <module>
+    from app.database import 
+Base, engine
+  File "C:\Users\Black\Deskto
+p\builds\invoice\backend\app\
+database.py", line 3, in 
+<module>
+    from 
+sqlalchemy.ext.asyncio 
+import AsyncSession, 
+async_sessionmaker, 
+create_async_engine
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\sqlalc
+hemy\__init__.py", line 12, 
+in <module>
+    from . import util as 
+_util
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\sqlalc
+hemy\util\__init__.py", line 
+15, in <module>
+    from ._collections 
+import coerce_generator_arg 
+as coerce_generator_arg
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\sqlalc
+hemy\util\_collections.py", 
+line 37, in <module>
+    from ._has_cy import 
+HAS_CYEXTENSION
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\sqlalc
+hemy\util\_has_cy.py", line 
+32, in <module>
+    _import_cy_extensions()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Black\AppDat
+a\Local\Programs\Python\Pytho
+n314\Lib\site-packages\sqlalc
+hemy\util\_has_cy.py", line 
+16, in _import_cy_extensions
+    from ..cyextension 
+import collections
+SyntaxError: source code 
+string cannot contain null 
+bytes
